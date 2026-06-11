@@ -6,6 +6,7 @@ import { Sidebar } from "@/components/layout/sidebar";
 import Dashboard from "@/pages/dashboard";
 import DocumentGenerator from "@/pages/document-generator";
 import LicenseDesigner from "@/pages/license-designer";
+import Analyzer from "@/pages/analyzer";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ function Router() {
       <Route path="/tnc" component={() => <Layout><DocumentGenerator type="tnc" title="Terms & Conditions" /></Layout>} />
       <Route path="/privacy" component={() => <Layout><DocumentGenerator type="privacy" title="Privacy Policy" /></Layout>} />
       <Route path="/license" component={() => <Layout><LicenseDesigner /></Layout>} />
+      <Route path="/analyze" component={() => <Layout><Analyzer /></Layout>} />
       <Route component={NotFound} />
     </Switch>
   );

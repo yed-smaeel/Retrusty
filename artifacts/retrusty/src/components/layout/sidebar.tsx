@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "wouter";
-import { FileText, ShieldAlert, FileSignature, LayoutDashboard } from "lucide-react";
+import { FileText, ShieldAlert, FileSignature, LayoutDashboard, Search } from "lucide-react";
 
 export function Sidebar() {
   const [location] = useLocation();
@@ -10,6 +10,7 @@ export function Sidebar() {
     { href: "/tnc", label: "T&C Generator", icon: FileText },
     { href: "/privacy", label: "Privacy Policy", icon: ShieldAlert },
     { href: "/license", label: "License Designer", icon: FileSignature },
+    { href: "/analyze", label: "Doc Analyzer", icon: Search },
   ];
 
   return (
