@@ -5,19 +5,7 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-export interface HealthStatus {
-  status: string;
-}
-
-export type DocumentRequestType = typeof DocumentRequestType[keyof typeof DocumentRequestType];
-
-
-export const DocumentRequestType = {
-  tnc: 'tnc',
-  privacy: 'privacy',
-  license: 'license',
-  summary: 'summary',
-} as const;
+import type { DocumentRequestType } from './documentRequestType';
 
 export interface DocumentRequest {
   type: DocumentRequestType;
@@ -40,8 +28,3 @@ export interface DocumentRequest {
   /** @nullable */
   licenseText?: string | null;
 }
-
-export interface ApiError {
-  error: string;
-}
-

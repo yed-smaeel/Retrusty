@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: generate
+    description: AI document generation
 paths:
   /healthz:
     get:
@@ -24,6 +26,37 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /generate:
+    post:
+      operationId: generateDocument
+      tags: [generate]
+      summary: Generate a legal document
+      description: Streams an AI-generated legal document via SSE
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DocumentRequest"
+      responses:
+        "200":
+          description: SSE stream of generated text
+          content:
+            text/event-stream:
+              schema:
+                type: string
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +66,36 @@ components:
           type: string
       required:
         - status
-
+    DocumentRequest:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum: [tnc, privacy, license, summary]
+        businessName:
+          type: ["string", "null"]
+        jurisdiction:
+          type: ["string", "null"]
+        industry:
+          type: ["string", "null"]
+        specialNeeds:
+          type: ["string", "null"]
+        licenseType:
+          type: ["string", "null"]
+        year:
+          type: ["string", "null"]
+        fullname:
+          type: ["string", "null"]
+        customRequirements:
+          type: ["string", "null"]
+        licenseText:
+          type: ["string", "null"]
+    ApiError:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
