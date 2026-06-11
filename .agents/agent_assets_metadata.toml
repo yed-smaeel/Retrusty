@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "qj0JGuh_j1Aps8j6jIz0R"
+uri = "file://README.md"
+type = "text"
+title = "Retrusty README.md"
